@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+[Daemon]
+Theme={{ plymouth__theme | quote }}
+{% if plymouth__show_delay != omit %}
+ShowDelay={{ plymouth__show_delay|int | string }}
+{% endif %}

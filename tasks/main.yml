@@ -1,0 +1,27 @@
+---
+
+- name: Ensure specified packages are in there desired state
+  package:
+    name: '{{ item }}'
+    state: '{{ "present" if (plymouth__deploy_state == "present") else "absent" }}'
+  with_flattened:
+    -  '{{ plymouth__base_packages }}'
+    -  '{{ plymouth__packages }}'
+  tags: [ 'role::plymouth:pkts' ]
+
+- name: Configure Plymouth
+  template:
+    src: 'etc/plymouth/plymouthd.conf.j2'
+    dest: '/etc/plymouth/plymouthd.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  when: ansible_distribution in ["Debian"]
+  notify: [ 'Update initramfs' ]
+
+## Requires plymouth__theme_to_file_map.
+## Rely on auto alternative handling for now.
+# - name: Configure Plymouth
+#   alternatives:
+#     name: 'default.plymouth'
+#     path: ''

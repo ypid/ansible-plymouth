@@ -1,0 +1,18 @@
+---
+
+ansigenome_info:
+  galaxy_url: 'https://galaxy.ansible.com/ypid/plymouth'
+  github_url: 'https://github.com/ypid/ansible-plymouth'
+  git_branch: 'master'
+
+  travis: True
+
+  license_url: 'https://tldrlegal.com/license/gnu-affero-general-public-license-v3-%28agpl-3.0%29'
+
+  authors:
+
+    - name:  'Robin Schneider'
+      email: 'ypid@riseup.net'
+      github: 'ypid'
+
+  synopsis: |

@@ -1,0 +1,76 @@
+---
+# .. vim: foldmarker=[[[,]]]:foldmethod=marker
+
+# ypid.plymouth default variables [[[
+# ===================================
+
+# .. contents:: Sections
+#    :local:
+#
+# .. include:: includes/all.rst
+
+
+# Packages and installation [[[
+# -----------------------------
+
+# .. envvar:: plymouth__base_packages [[[
+#
+# List of base packages to install.
+plymouth__base_packages:
+  - 'plymouth'
+
+                                                                   # ]]]
+# .. envvar:: plymouth__packages [[[
+#
+# List of additional packages to install.
+plymouth__packages:
+  - '{{ ["plymouth-themes"] if (ansible_distribution in ["Debian"]) else [] }}'
+  - '{{ ["plymouth-theme-" + plymouth__theme] if (ansible_distribution in ["Ubuntu"]) else [] }}'
+
+                                                                   # ]]]
+# .. envvar:: plymouth__deploy_state [[[
+#
+# What is the desired state which this role should achieve? Possible options:
+#
+# ``present``
+#   Default. Install and configure Plymouth.
+#
+# ``absent``
+#   Remove Plymouth.
+#
+plymouth__deploy_state: 'present'
+                                                                   # ]]]
+                                                                   # ]]]
+# Customization [[[
+# -----------------
+
+# .. envvar:: plymouth__theme [[[
+#
+# The theme to enable. You can run :command:`plymouth-set-default-theme --list`
+# to get a list of installed themes.
+plymouth__theme: 'solar'
+
+                                                                   # ]]]
+# .. envvar:: plymouth__show_delay [[[
+#
+# On systems that boot quickly, you may only see a flicker of your splash theme
+# before your DM or login prompt is ready. You can set this to an interval
+# (in seconds) longer than your boot time to prevent this flicker and only show
+# a blank screen.
+#
+# If this variable is set to the special value ``{{ omit }}``, the
+# configuration is not altered.
+plymouth__show_delay: '{{ omit }}'
+                                                                   # ]]]
+                                                                   # ]]]
+# Configuration for other Ansible roles [[[
+# -----------------------------------------
+
+# .. envvar:: plymouth__grub__dependent_kernel_options [[[
+#
+# Configuration for the debops.grub_ role.
+plymouth__grub__dependent_kernel_options:
+  - 'splash'
+                                                                   # ]]]
+                                                                   # ]]]
+                                                                   # ]]]

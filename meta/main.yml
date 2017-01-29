@@ -1,0 +1,30 @@
+---
+
+dependencies: []
+
+galaxy_info:
+
+  author: 'Robin Schneider'
+  description: 'Configure a graphical boot and shutdown animation using Plymouth'
+  license: 'AGPL-3.0'
+  min_ansible_version: '2.1.4'
+
+  platforms:
+
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+        - xenial
+
+  galaxy_tags:
+    - workstation
+    - desktop
+    - linuxondesktop
+    - boot
+    - bootsplash
