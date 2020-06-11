@@ -1,6 +1,7 @@
 ---
 
 - name: Configure a graphical boot and shutdown animation using Plymouth
+  collections: [ 'debops.debops' ]
   hosts: [ 'ypid_service_plymouth' ]
   become: True
 
@@ -10,7 +11,7 @@
 
   roles:
 
-    - role: debops.grub
+    - role: grub
       grub_dependent_kernel_options: '{{ plymouth__grub__dependent_kernel_options }}'
       tags: [ 'role::grub' ]
 
